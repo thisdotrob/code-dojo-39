@@ -31,6 +31,9 @@ A [Go](https://golang.org/) version can be found in the [golang](golang) folder;
 
 	go run main.go
 
+A [Clojure](https://clojure.github.io/) version can be found in the [clojure](clojure) folder; produce the song with:
+
+	lein uberjar && java -jar target/song.jar
 
 You can find out more about the London Code Dojo at our [homepage](http://www.meetup.com/London-Code-Dojo/).
 
