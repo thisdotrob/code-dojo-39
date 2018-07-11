@@ -2,47 +2,49 @@
   (:require [clojure.pprint :as pprint])
   (:gen-class))
 
-(def default-song "There was an old lady who swallowed a fly.
-I don't know why she swallowed a fly - perhaps she'll die!
+(def animals ["fly" "spider" "bird" "cat" "dog" "cow" "horse"])
 
-There was an old lady who swallowed a spider;
+(def default-song (str "There was an old lady who swallowed a " (first animals) ".
+I don't know why she swallowed a " (first animals) " - perhaps she'll die!
+
+There was an old lady who swallowed a " (second animals) ";
 That wriggled and wiggled and tickled inside her.
-She swallowed the spider to catch the fly;
-I don't know why she swallowed a fly - perhaps she'll die!
+She swallowed the " (second animals) " to catch the fly;
+I don't know why she swallowed a " (first animals) " - perhaps she'll die!
 
-There was an old lady who swallowed a bird;
-How absurd to swallow a bird.
-She swallowed the bird to catch the spider,
-She swallowed the spider to catch the fly;
-I don't know why she swallowed a fly - perhaps she'll die!
+There was an old lady who swallowed a " (nth animals 2) ";
+How absurd to swallow a " (nth animals 2) ".
+She swallowed the " (nth animals 2) " to catch the " (second animals) ",
+She swallowed the " (second animals) " to catch the " (first animals) ";
+I don't know why she swallowed a " (first animals) " - perhaps she'll die!
 
-There was an old lady who swallowed a cat;
-Fancy that to swallow a cat!
-She swallowed the cat to catch the bird,
-She swallowed the bird to catch the spider,
-She swallowed the spider to catch the fly;
-I don't know why she swallowed a fly - perhaps she'll die!
+There was an old lady who swallowed a " (nth animals 3) ";
+Fancy that to swallow a " (nth animals 3) "!
+She swallowed the " (nth animals 3) " to catch the " (nth animals 2) ",
+She swallowed the " (nth animals 2) " to catch the " (second animals) ",
+She swallowed the " (second animals) " to catch the " (first animals) ";
+I don't know why she swallowed a " (first animals) " - perhaps she'll die!
 
-There was an old lady who swallowed a dog;
-What a hog, to swallow a dog!
-She swallowed the dog to catch the cat,
-She swallowed the cat to catch the bird,
-She swallowed the bird to catch the spider,
-She swallowed the spider to catch the fly;
-I don't know why she swallowed a fly - perhaps she'll die!
+There was an old lady who swallowed a " (nth animals 4) ";
+What a hog, to swallow a " (nth animals 4) "!
+She swallowed the " (nth animals 4) " to catch the " (nth animals 3) ",
+She swallowed the " (nth animals 3) " to catch the " (nth animals 2) ",
+She swallowed the " (nth animals 2) " to catch the " (second animals) ",
+She swallowed the " (second animals) " to catch the " (first animals) ";
+I don't know why she swallowed a " (first animals) " - perhaps she'll die!
 
-There was an old lady who swallowed a cow;
-I don't know how she swallowed a cow!
-She swallowed the cow to catch the dog,
-She swallowed the dog to catch the cat,
-She swallowed the cat to catch the bird,
-She swallowed the bird to catch the spider,
-She swallowed the spider to catch the fly;
-I don't know why she swallowed a fly - perhaps she'll die!
+There was an old lady who swallowed a " (nth animals 5) ";
+I don't know how she swallowed a " (nth animals 5) "!
+She swallowed the " (nth animals 5) " to catch the " (nth animals 4) ",
+She swallowed the " (nth animals 4) " to catch the " (nth animals 3) ",
+She swallowed the " (nth animals 3) " to catch the " (nth animals 2) ",
+She swallowed the " (nth animals 2) " to catch the " (second animals) ",
+She swallowed the " (second animals) " to catch the " (first animals) ";
+I don't know why she swallowed a " (first animals) " - perhaps she'll die!
 
-There was an old lady who swallowed a horse...
+There was an old lady who swallowed a " (nth animals 6) "...
 ...She's dead, of course!
-")
+"))
 
 (defn sing [& args]
   default-song)
