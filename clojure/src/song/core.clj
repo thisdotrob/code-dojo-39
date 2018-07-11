@@ -12,8 +12,8 @@
                "I don't know how she swallowed a cow!"
                "...She's dead, of course!"])
 
-(defn animals->swallowed-catched-line [animals]
-  (str "She swallowed the " (first animals) " to catch the " (second animals)))
+(defn animals->swallowed-catched-line [[animal-1 animal-2]]
+  (str "She swallowed the " animal-1 " to catch the " animal-2))
 
 (defn animal->swallowed-a-line [animal]
   (str "There was an old lady who swallowed a " animal))
