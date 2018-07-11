@@ -4,8 +4,9 @@
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.8.0"]]
-  :source-paths ["src"]
+  :source-paths ["src" "test"]
   :main song.core
   :profiles {:uberjar {:aot :all}}
   :repl-options {:init-ns song.core}
-  :uberjar-name "song.jar")
+  :uberjar-name "song.jar"
+  :plugins [[lein-auto "0.1.3"]])
