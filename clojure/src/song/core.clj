@@ -30,38 +30,38 @@
 
 (def ellipsis-new-line "...\n")
 
-(def default-song (str (animal->swallowed-a-line (first animals)) full-stop-new-line
-                       (first comments) double-new-line
-                       (animal->swallowed-a-line (second animals)) semi-colon-new-line
-                       (second comments) new-line
-                       (animals->swallowed-catched-line [(second animals) (first animals)]) semi-colon-new-line
-                       (first comments) double-new-line
+(def default-song (str (animal->swallowed-a-line (nth animals 0)) full-stop-new-line
+                       (nth comments 0) double-new-line
+                       (animal->swallowed-a-line (nth animals 1)) semi-colon-new-line
+                       (nth comments 1) new-line
+                       (animals->swallowed-catched-line [(nth animals 1) (nth animals 0)]) semi-colon-new-line
+                       (nth comments 0) double-new-line
                        (animal->swallowed-a-line (nth animals 2)) semi-colon-new-line
                        (nth comments 2) new-line
-                       (animals->swallowed-catched-line [(nth animals 2) (second animals)]) comma-new-line
-                       (animals->swallowed-catched-line [(second animals) (first animals)]) semi-colon-new-line
-                       (first comments) double-new-line
+                       (animals->swallowed-catched-line [(nth animals 2) (nth animals 1)]) comma-new-line
+                       (animals->swallowed-catched-line [(nth animals 1) (nth animals 0)]) semi-colon-new-line
+                       (nth comments 0) double-new-line
                        (animal->swallowed-a-line (nth animals 3)) semi-colon-new-line
                        (nth comments 3) new-line
                        (animals->swallowed-catched-line [(nth animals 3) (nth animals 2)]) comma-new-line
-                       (animals->swallowed-catched-line [(nth animals 2) (second animals)]) comma-new-line
-                       (animals->swallowed-catched-line [(second animals) (first animals)]) semi-colon-new-line
-                       (first comments) double-new-line
+                       (animals->swallowed-catched-line [(nth animals 2) (nth animals 1)]) comma-new-line
+                       (animals->swallowed-catched-line [(nth animals 1) (nth animals 0)]) semi-colon-new-line
+                       (nth comments 0) double-new-line
                        (animal->swallowed-a-line (nth animals 4)) semi-colon-new-line
                        (nth comments 4) new-line
                        (animals->swallowed-catched-line [(nth animals 4) (nth animals 3)]) comma-new-line
                        (animals->swallowed-catched-line [(nth animals 3) (nth animals 2)]) comma-new-line
-                       (animals->swallowed-catched-line [(nth animals 2) (second animals)]) comma-new-line
-                       (animals->swallowed-catched-line [(second animals) (first animals)]) semi-colon-new-line
-                       (first comments) double-new-line
+                       (animals->swallowed-catched-line [(nth animals 2) (nth animals 1)]) comma-new-line
+                       (animals->swallowed-catched-line [(nth animals 1) (nth animals 0)]) semi-colon-new-line
+                       (nth comments 0) double-new-line
                        (animal->swallowed-a-line (nth animals 5)) semi-colon-new-line
                        (nth comments 5) new-line
                        (animals->swallowed-catched-line [(nth animals 5) (nth animals 4)]) comma-new-line
                        (animals->swallowed-catched-line [(nth animals 4) (nth animals 3)]) comma-new-line
                        (animals->swallowed-catched-line [(nth animals 3) (nth animals 2)]) comma-new-line
-                       (animals->swallowed-catched-line [(nth animals 2) (second animals)]) comma-new-line
-                       (animals->swallowed-catched-line [(second animals) (first animals)]) semi-colon-new-line
-                       (first comments) double-new-line
+                       (animals->swallowed-catched-line [(nth animals 2) (nth animals 1)]) comma-new-line
+                       (animals->swallowed-catched-line [(nth animals 1) (nth animals 0)]) semi-colon-new-line
+                       (nth comments 0) double-new-line
                        (animal->swallowed-a-line (nth animals 6)) ellipsis-new-line
                        (nth comments 6) new-line))
 
