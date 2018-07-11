@@ -15,31 +15,33 @@
 (defn animals->swallowed-catched-line [animals]
   (str "She swallowed the " (first animals) " to catch the " (second animals)))
 
-(def default-song (str "There was an old lady who swallowed a " (first animals) ".\n"
+(def opening-line "There was an old lady who swallowed a ")
+
+(def default-song (str opening-line (first animals) ".\n"
                        (first comments) "\n\n"
-                       "There was an old lady who swallowed a " (second animals) ";\n"
+                       opening-line (second animals) ";\n"
                        (second comments) "\n"
                        (animals->swallowed-catched-line [(second animals) (first animals)]) ";\n"
                        (first comments) "\n\n"
-                       "There was an old lady who swallowed a " (nth animals 2) ";\n"
+                       opening-line (nth animals 2) ";\n"
                        (nth comments 2) "\n"
                        (animals->swallowed-catched-line [(nth animals 2) (second animals)]) ",\n"
                        (animals->swallowed-catched-line [(second animals) (first animals)]) ";\n"
                        (first comments) "\n\n"
-                       "There was an old lady who swallowed a " (nth animals 3) ";\n"
+                       opening-line (nth animals 3) ";\n"
                        (nth comments 3) "\n"
                        (animals->swallowed-catched-line [(nth animals 3) (nth animals 2)]) ",\n"
                        (animals->swallowed-catched-line [(nth animals 2) (second animals)]) ",\n"
                        (animals->swallowed-catched-line [(second animals) (first animals)]) ";\n"
                        (first comments) "\n\n"
-                       "There was an old lady who swallowed a " (nth animals 4) ";\n"
+                       opening-line (nth animals 4) ";\n"
                        (nth comments 4) "\n"
                        (animals->swallowed-catched-line [(nth animals 4) (nth animals 3)]) ",\n"
                        (animals->swallowed-catched-line [(nth animals 3) (nth animals 2)]) ",\n"
                        (animals->swallowed-catched-line [(nth animals 2) (second animals)]) ",\n"
                        (animals->swallowed-catched-line [(second animals) (first animals)]) ";\n"
                        (first comments) "\n\n"
-                       "There was an old lady who swallowed a " (nth animals 5) ";\n"
+                       opening-line (nth animals 5) ";\n"
                        (nth comments 5) "\n"
                        (animals->swallowed-catched-line [(nth animals 5) (nth animals 4)]) ",\n"
                        (animals->swallowed-catched-line [(nth animals 4) (nth animals 3)]) ",\n"
@@ -47,7 +49,7 @@
                        (animals->swallowed-catched-line [(nth animals 2) (second animals)]) ",\n"
                        (animals->swallowed-catched-line [(second animals) (first animals)]) ";\n"
                        (first comments) "\n\n"
-                       "There was an old lady who swallowed a " (nth animals 6) "...\n"
+                       opening-line (nth animals 6) "...\n"
                        (nth comments 6) "\n"))
 
 (defn sing [& args]
