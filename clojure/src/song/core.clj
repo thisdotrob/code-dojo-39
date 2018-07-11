@@ -12,6 +12,9 @@
                "I don't know how she swallowed a cow!"
                "...She's dead, of course!"])
 
+(defn animals->swallowed-catched-line [animals]
+  (str "She swallowed the " (first animals) " to catch the " (second animals)))
+
 (def default-song (str "There was an old lady who swallowed a " (first animals) ".\n"
                        (first comments) "\n\n"
                        "There was an old lady who swallowed a " (second animals) ";\n"
