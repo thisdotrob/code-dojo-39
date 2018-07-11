@@ -18,40 +18,52 @@
 (defn animal->swallowed-a-line [animal]
   (str "There was an old lady who swallowed a " animal))
 
-(def default-song (str (animal->swallowed-a-line (first animals)) ".\n"
-                       (first comments) "\n\n"
-                       (animal->swallowed-a-line (second animals)) ";\n"
-                       (second comments) "\n"
-                       (animals->swallowed-catched-line [(second animals) (first animals)]) ";\n"
-                       (first comments) "\n\n"
-                       (animal->swallowed-a-line (nth animals 2)) ";\n"
-                       (nth comments 2) "\n"
-                       (animals->swallowed-catched-line [(nth animals 2) (second animals)]) ",\n"
-                       (animals->swallowed-catched-line [(second animals) (first animals)]) ";\n"
-                       (first comments) "\n\n"
-                       (animal->swallowed-a-line (nth animals 3)) ";\n"
-                       (nth comments 3) "\n"
-                       (animals->swallowed-catched-line [(nth animals 3) (nth animals 2)]) ",\n"
-                       (animals->swallowed-catched-line [(nth animals 2) (second animals)]) ",\n"
-                       (animals->swallowed-catched-line [(second animals) (first animals)]) ";\n"
-                       (first comments) "\n\n"
-                       (animal->swallowed-a-line (nth animals 4)) ";\n"
-                       (nth comments 4) "\n"
-                       (animals->swallowed-catched-line [(nth animals 4) (nth animals 3)]) ",\n"
-                       (animals->swallowed-catched-line [(nth animals 3) (nth animals 2)]) ",\n"
-                       (animals->swallowed-catched-line [(nth animals 2) (second animals)]) ",\n"
-                       (animals->swallowed-catched-line [(second animals) (first animals)]) ";\n"
-                       (first comments) "\n\n"
-                       (animal->swallowed-a-line (nth animals 5)) ";\n"
-                       (nth comments 5) "\n"
-                       (animals->swallowed-catched-line [(nth animals 5) (nth animals 4)]) ",\n"
-                       (animals->swallowed-catched-line [(nth animals 4) (nth animals 3)]) ",\n"
-                       (animals->swallowed-catched-line [(nth animals 3) (nth animals 2)]) ",\n"
-                       (animals->swallowed-catched-line [(nth animals 2) (second animals)]) ",\n"
-                       (animals->swallowed-catched-line [(second animals) (first animals)]) ";\n"
-                       (first comments) "\n\n"
-                       (animal->swallowed-a-line (nth animals 6)) "...\n"
-                       (nth comments 6) "\n"))
+(def double-new-line "\n\n")
+
+(def new-line "\n")
+
+(def semi-colon-new-line ";\n")
+
+(def comma-new-line ",\n")
+
+(def full-stop-new-line ".\n")
+
+(def ellipsis-new-line "...\n")
+
+(def default-song (str (animal->swallowed-a-line (first animals)) full-stop-new-line
+                       (first comments) double-new-line
+                       (animal->swallowed-a-line (second animals)) semi-colon-new-line
+                       (second comments) new-line
+                       (animals->swallowed-catched-line [(second animals) (first animals)]) semi-colon-new-line
+                       (first comments) double-new-line
+                       (animal->swallowed-a-line (nth animals 2)) semi-colon-new-line
+                       (nth comments 2) new-line
+                       (animals->swallowed-catched-line [(nth animals 2) (second animals)]) comma-new-line
+                       (animals->swallowed-catched-line [(second animals) (first animals)]) semi-colon-new-line
+                       (first comments) double-new-line
+                       (animal->swallowed-a-line (nth animals 3)) semi-colon-new-line
+                       (nth comments 3) new-line
+                       (animals->swallowed-catched-line [(nth animals 3) (nth animals 2)]) comma-new-line
+                       (animals->swallowed-catched-line [(nth animals 2) (second animals)]) comma-new-line
+                       (animals->swallowed-catched-line [(second animals) (first animals)]) semi-colon-new-line
+                       (first comments) double-new-line
+                       (animal->swallowed-a-line (nth animals 4)) semi-colon-new-line
+                       (nth comments 4) new-line
+                       (animals->swallowed-catched-line [(nth animals 4) (nth animals 3)]) comma-new-line
+                       (animals->swallowed-catched-line [(nth animals 3) (nth animals 2)]) comma-new-line
+                       (animals->swallowed-catched-line [(nth animals 2) (second animals)]) comma-new-line
+                       (animals->swallowed-catched-line [(second animals) (first animals)]) semi-colon-new-line
+                       (first comments) double-new-line
+                       (animal->swallowed-a-line (nth animals 5)) semi-colon-new-line
+                       (nth comments 5) new-line
+                       (animals->swallowed-catched-line [(nth animals 5) (nth animals 4)]) comma-new-line
+                       (animals->swallowed-catched-line [(nth animals 4) (nth animals 3)]) comma-new-line
+                       (animals->swallowed-catched-line [(nth animals 3) (nth animals 2)]) comma-new-line
+                       (animals->swallowed-catched-line [(nth animals 2) (second animals)]) comma-new-line
+                       (animals->swallowed-catched-line [(second animals) (first animals)]) semi-colon-new-line
+                       (first comments) double-new-line
+                       (animal->swallowed-a-line (nth animals 6)) ellipsis-new-line
+                       (nth comments 6) new-line))
 
 (defn sing [& args]
   default-song)
