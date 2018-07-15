@@ -43,34 +43,26 @@
           lines (map (fn [x] (animals->swallowed-catched-line x)) pairs)]
       (str (string/join ",\n" lines) ";\n"))))
 
-(def default-song (str (animal->swallowed-a-line (nth animals 0)) full-stop-new-line
-                       (nth comments 0) double-new-line
+(defn animals-&-comments->verse [animals comments]
+  (if (= 1 (count animals))
+    (str (animal->swallowed-a-line (first animals))
+         full-stop-new-line
+         (first comments)
+         double-new-line)
+    (str (animal->swallowed-a-line (last animals))
+         semi-colon-new-line
+         (last comments)
+         new-line
+         (animals->swallowed-catched-lines animals)
+         (first comments)
+         double-new-line)))
 
-                       (animal->swallowed-a-line (nth animals 1)) semi-colon-new-line
-                       (nth comments 1) new-line
-                       (animals->swallowed-catched-lines (take 2 animals))
-                       (nth comments 0) double-new-line
-
-                       (animal->swallowed-a-line (nth animals 2)) semi-colon-new-line
-                       (nth comments 2) new-line
-                       (animals->swallowed-catched-lines (take 3 animals))
-                       (nth comments 0) double-new-line
-
-                       (animal->swallowed-a-line (nth animals 3)) semi-colon-new-line
-                       (nth comments 3) new-line
-                       (animals->swallowed-catched-lines (take 4 animals))
-                       (nth comments 0) double-new-line
-
-                       (animal->swallowed-a-line (nth animals 4)) semi-colon-new-line
-                       (nth comments 4) new-line
-                       (animals->swallowed-catched-lines (take 5 animals))
-                       (nth comments 0) double-new-line
-
-                       (animal->swallowed-a-line (nth animals 5)) semi-colon-new-line
-                       (nth comments 5) new-line
-                       (animals->swallowed-catched-lines (take 6 animals))
-                       (nth comments 0) double-new-line
-
+(def default-song (str (animals-&-comments->verse (take 1 animals) (take 1 comments))
+                       (animals-&-comments->verse (take 2 animals) (take 2 comments))
+                       (animals-&-comments->verse (take 3 animals) (take 3 comments))
+                       (animals-&-comments->verse (take 4 animals) (take 4 comments))
+                       (animals-&-comments->verse (take 5 animals) (take 5 comments))
+                       (animals-&-comments->verse (take 6 animals) (take 6 comments))
                        (animal->swallowed-a-line (nth animals 6)) ellipsis-new-line
                        (nth comments 6) new-line))
 

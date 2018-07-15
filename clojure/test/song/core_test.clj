@@ -37,7 +37,7 @@
           expected (str "There was an old lady who swallowed a dog;\n"
                         "Line about the dog...\n"
                         "She swallowed the dog to catch the turtle;\n"
-                        "Something about a turtle!\nn")]
+                        "Something about a turtle!\n\n")]
       (is (= expected (sut/animals-&-comments->verse animals comments)))))
   (testing "It returns a verse for three animals"
     (let [animals ["turtle" "dog" "penguin"]
@@ -46,7 +46,7 @@
                         "Penguin related stuff-\n"
                         "She swallowed the penguin to catch the dog,\n"
                         "She swallowed the dog to catch the turtle;\n"
-                        "Something about a turtle!\nn")]
+                        "Something about a turtle!\n\n")]
       (is (= expected (sut/animals-&-comments->verse animals comments))))))
 
 (deftest animals->swallowed-catched-line
