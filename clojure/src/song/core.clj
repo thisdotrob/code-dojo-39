@@ -58,14 +58,16 @@
        (first comments)
        double-new-line))
 
+(defn animal-&-comment->closing-verse [animal comment]
+  (str (animal->swallowed-a-line animal) ellipsis-new-line comment new-line))
+
 (def default-song (str (animal-&-comment->opening-verse (first animals) (first comments))
                        (animals-&-comments->verse (take 2 animals) (take 2 comments))
                        (animals-&-comments->verse (take 3 animals) (take 3 comments))
                        (animals-&-comments->verse (take 4 animals) (take 4 comments))
                        (animals-&-comments->verse (take 5 animals) (take 5 comments))
                        (animals-&-comments->verse (take 6 animals) (take 6 comments))
-                       (animal->swallowed-a-line (nth animals 6)) ellipsis-new-line
-                       (nth comments 6) new-line))
+                       (animal-&-comment->closing-verse (last animals) (last comments))))
 
 (defn sing [& args]
   default-song)

@@ -25,6 +25,13 @@
                         "She swallowed the dog to catch the turtle;\n")]
       (is (= expected (sut/animals->swallowed-catched-lines animals))))))
 
+(deftest animal-&-comment->closing-verse
+  (testing "It returns an closing verse for the provided animal"
+    (let [animal "turtle"
+          comment "Something about a turtle!"
+          expected "There was an old lady who swallowed a turtle...\nSomething about a turtle!\n"]
+      (is (= expected (sut/animal-&-comment->closing-verse animal comment))))))
+
 (deftest animal-&-comment->opening-verse
   (testing "It returns an opening verse for the provided animal"
     (let [animal "turtle"
