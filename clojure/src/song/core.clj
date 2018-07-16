@@ -3,12 +3,7 @@
             [clojure.string :as string])
   (:gen-class))
 
-(def double-new-line "\n\n")
-(def new-line "\n")
-(def semi-colon-new-line ";\n")
-(def comma-new-line ",\n")
-(def full-stop-new-line ".\n")
-(def ellipsis-new-line "...\n")
+(def line-separator "\n")
 
 (defn animals->swallowed-catched-line [[animal-1 animal-2]]
   (str "She swallowed the " animal-1 " to catch the " animal-2))
@@ -21,33 +16,37 @@
 (defn animals->swallowed-catched-lines [animals]
   (let [pairs (make-pairs (reverse animals))
         lines (map (fn [x] (animals->swallowed-catched-line x)) pairs)]
-    (str (string/join ",\n" lines) ";\n")))
+    (str (string/join (str "," line-separator) lines) ";" line-separator)))
 
 (defn animal->swallowed-a-line [animal]
   (str "There was an old lady who swallowed a " animal))
 
 (defn song-data->verse [song-data]
   (str (animal->swallowed-a-line (:animal (last song-data)))
-       semi-colon-new-line
+       ";"
+       line-separator
        (:comment (last song-data))
-       new-line
+       line-separator
        (animals->swallowed-catched-lines (map :animal song-data))
        (:comment (first song-data))))
 
 (defn song-data-item->closing-verse [{:keys [animal comment]}]
   (str (animal->swallowed-a-line animal)
-       ellipsis-new-line
+       "..."
+       line-separator
        comment))
 
 (defn song-data-item->opening-verse [{:keys [animal comment]}]
   (str (animal->swallowed-a-line animal)
-       full-stop-new-line
+       "."
+       line-separator
        comment))
 
 (defn middle-verse-accumulator [song-data acc idx]
   (str acc
        (song-data->verse (take idx song-data))
-       double-new-line))
+       line-separator
+       line-separator))
 
 (defn sing [song-data]
   (let [opening-verse (song-data-item->opening-verse (first song-data))
@@ -55,10 +54,11 @@
         standard-verse-indexes (range 2 (count song-data))
         middle-verses (reduce (partial middle-verse-accumulator song-data) "" standard-verse-indexes)]
     (str opening-verse
-         double-new-line
+         line-separator
+         line-separator
          middle-verses
          closing-verse
-         new-line)))
+         line-separator)))
 
 (defn -main [song-data]
   (pprint/pprint (sing song-data)))
