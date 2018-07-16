@@ -8,17 +8,17 @@
           expected  [["hog" "pig"] ["pig" "boar"]]]
       (is (= expected (sut/make-pairs animals))))))
 
-(deftest animals->swallowed-catched-lines
+(deftest animals-pair->swallowed-catched-lines
   (testing "It returns correct lines for two animals"
     (let [animals ["turtle" "dog"]
-          expected (str "She swallowed the dog to catch the turtle;\n")]
+          expected (str "She swallowed the dog to catch the turtle")]
       (is (= expected (sut/animals->swallowed-catched-lines animals)))))
   (testing "It returns correct lines for five animals"
     (let [animals ["turtle" "dog" "rabbit" "skunk" "wilderbeast"]
           expected (str "She swallowed the wilderbeast to catch the skunk,\n"
                         "She swallowed the skunk to catch the rabbit,\n"
                         "She swallowed the rabbit to catch the dog,\n"
-                        "She swallowed the dog to catch the turtle;\n")]
+                        "She swallowed the dog to catch the turtle")]
       (is (= expected (sut/animals->swallowed-catched-lines animals))))))
 
 (deftest song-data-item->closing-verse
@@ -53,11 +53,11 @@
                         "Something about a turtle!")]
       (is (= expected (sut/song-data->verse song-data))))))
 
-(deftest animals->swallowed-catched-line
+(deftest animals-pair->swallowed-catched-line
   (testing "It returns a swallowed ... to catch ... line"
     (let [animals ["cat" "dog"]
           expected "She swallowed the cat to catch the dog"]
-      (is (= expected (sut/animals->swallowed-catched-line animals))))))
+      (is (= expected (sut/animals-pair->swallowed-catched-line animals))))))
 
 (deftest animal->swallowed-a-line
   (testing "It returns the swallowed a ... line"

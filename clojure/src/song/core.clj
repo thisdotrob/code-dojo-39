@@ -5,18 +5,17 @@
 
 (def line-separator "\n")
 
-(defn animals->swallowed-catched-line [[animal-1 animal-2]]
+(defn animals-pair->swallowed-catched-line [[animal-1 animal-2]]
   (str "She swallowed the " animal-1 " to catch the " animal-2))
 
 (defn make-pairs [xs]
-  (let [map-fn (fn [idx] [(nth xs idx) (nth xs (+ idx 1))])
-        indexes (range (- (count xs) 1))]
-    (map map-fn indexes)))
+  (let [indexes (range (- (count xs) 1))]
+    (map (fn [idx] [(nth xs idx) (nth xs (+ idx 1))]) indexes)))
 
 (defn animals->swallowed-catched-lines [animals]
   (let [pairs (make-pairs (reverse animals))
-        lines (map (fn [x] (animals->swallowed-catched-line x)) pairs)]
-    (str (string/join (str "," line-separator) lines) ";" line-separator)))
+        lines (map animals-pair->swallowed-catched-line pairs)]
+    (string/join (str "," line-separator) lines)))
 
 (defn animal->swallowed-a-line [animal]
   (str "There was an old lady who swallowed a " animal))
@@ -28,6 +27,8 @@
        (:comment (last song-data))
        line-separator
        (animals->swallowed-catched-lines (map :animal song-data))
+       ";"
+       line-separator
        (:comment (first song-data))))
 
 (defn song-data-item->closing-verse [{:keys [animal comment]}]
