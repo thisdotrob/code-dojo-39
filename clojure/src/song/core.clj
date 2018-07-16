@@ -31,31 +31,31 @@
         lines (map (fn [x] (animals->swallowed-catched-line x)) pairs)]
     (str (string/join ",\n" lines) ";\n")))
 
-(defn animal-&-comment->opening-verse [animal comment]
+(defn animal-&-comment->opening-verse [{:keys [animal comment]}]
   (str (animal->swallowed-a-line animal)
        full-stop-new-line
        comment
        double-new-line))
 
-(defn animals-&-comments->verse [animals comments]
-  (str (animal->swallowed-a-line (last animals))
+(defn animals-&-comments->verse [song-data]
+  (str (animal->swallowed-a-line (:animal (last song-data)))
        semi-colon-new-line
-       (last comments)
+       (:comment (last song-data))
        new-line
-       (animals->swallowed-catched-lines animals)
-       (first comments)
+       (animals->swallowed-catched-lines (map :animal song-data))
+       (:comment (first song-data))
        double-new-line))
 
-(defn animal-&-comment->closing-verse [animal comment]
+(defn animal-&-comment->closing-verse [{:keys [animal comment]}]
   (str (animal->swallowed-a-line animal) ellipsis-new-line comment new-line))
 
-(defn sing [animals comments]
-  (let [opening-verse (animal-&-comment->opening-verse (first animals) (first comments))
-        closing-verse (animal-&-comment->closing-verse (last animals) (last comments))
-        standard-verse-indexes (range 2 (count animals))
-        middle-verse-accumulator (fn [a x] (str a (animals-&-comments->verse (take x animals) (take x comments))))
+(defn sing [song-data]
+  (let [opening-verse (animal-&-comment->opening-verse (first song-data))
+        closing-verse (animal-&-comment->closing-verse (last song-data))
+        standard-verse-indexes (range 2 (count song-data))
+        middle-verse-accumulator (fn [a x] (str a (animals-&-comments->verse (take x song-data))))
         middle-verses (reduce middle-verse-accumulator "" standard-verse-indexes)]
     (str opening-verse middle-verses closing-verse)))
 
-(defn -main [animals comments]
-  (pprint/pprint (sing animals comments)))
+(defn -main [song-data]
+  (pprint/pprint (sing song-data)))

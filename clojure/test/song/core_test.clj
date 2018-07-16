@@ -23,36 +23,35 @@
 
 (deftest animal-&-comment->closing-verse
   (testing "It returns an closing verse for the provided animal"
-    (let [animal "turtle"
-          comment "Something about a turtle!"
+    (let [song-data {:animal "turtle" :comment "Something about a turtle!"}
           expected "There was an old lady who swallowed a turtle...\nSomething about a turtle!\n"]
-      (is (= expected (sut/animal-&-comment->closing-verse animal comment))))))
+      (is (= expected (sut/animal-&-comment->closing-verse song-data))))))
 
 (deftest animal-&-comment->opening-verse
   (testing "It returns an opening verse for the provided animal"
-    (let [animal "turtle"
-          comment "Something about a turtle!"
+    (let [song-data {:animal "turtle" :comment "Something about a turtle!"}
           expected "There was an old lady who swallowed a turtle.\nSomething about a turtle!\n\n"]
-      (is (= expected (sut/animal-&-comment->opening-verse animal comment))))))
+      (is (= expected (sut/animal-&-comment->opening-verse song-data))))))
 
 (deftest animals-&-comments->verse
-  (testing "It returns a verse for two animals"
-    (let [animals ["turtle" "dog"]
-          comments ["Something about a turtle!" "Line about the dog..."]
+  (testing  "It returns a verse for two animals"
+    (let [song-data [{:animal "turtle" :comment "Something about a turtle!"}
+                     {:animal "dog" :comment "Line about the dog..."}]
           expected (str "There was an old lady who swallowed a dog;\n"
                         "Line about the dog...\n"
                         "She swallowed the dog to catch the turtle;\n"
                         "Something about a turtle!\n\n")]
-      (is (= expected (sut/animals-&-comments->verse animals comments)))))
+      (is (= expected (sut/animals-&-comments->verse song-data)))))
   (testing "It returns a verse for three animals"
-    (let [animals ["turtle" "dog" "penguin"]
-          comments ["Something about a turtle!" "Line about the dog..." "Penguin related stuff-"]
+    (let [song-data [{:animal "turtle" :comment "Something about a turtle!"}
+                     {:animal "dog" :comment  "It returns a verse for two animals"}
+                     {:animal "penguin" :comment "Penguin related stuff-"}]
           expected (str "There was an old lady who swallowed a penguin;\n"
                         "Penguin related stuff-\n"
                         "She swallowed the penguin to catch the dog,\n"
                         "She swallowed the dog to catch the turtle;\n"
                         "Something about a turtle!\n\n")]
-      (is (= expected (sut/animals-&-comments->verse animals comments))))))
+      (is (= expected (sut/animals-&-comments->verse song-data))))))
 
 (deftest animals->swallowed-catched-line
   (testing "It returns a swallowed ... to catch ... line"
@@ -68,20 +67,18 @@
 
 (deftest sing
   (testing "It returns the song as a string for 3 animals"
-    (let [animals ["fly" "spider" "bird"]
-          comments ["I don't know why she swallowed a fly - perhaps she'll die!"
-                    "That wriggled and wiggled and tickled inside her."
-                    "How absurd to swallow a bird."]
+    (let [song-data [{:animal "fly" :comment "I don't know why she swallowed a fly - perhaps she'll die!"}
+                     {:animal "spider" :comment "That wriggled and wiggled and tickled inside her."}
+                     {:animal "bird" :comment "How absurd to swallow a bird."}]
           expected (slurp "test/song/fixtures/3-animal-song.txt")]
-      (is (= expected (sut/sing animals comments)))))
+      (is (= expected (sut/sing song-data)))))
   (testing "It returns the song as a string for 7 animals"
-    (let [animals ["fly" "spider" "bird" "cat" "dog" "cow" "horse"]
-          comments ["I don't know why she swallowed a fly - perhaps she'll die!"
-                    "That wriggled and wiggled and tickled inside her."
-                    "How absurd to swallow a bird."
-                    "Fancy that to swallow a cat!"
-                    "What a hog, to swallow a dog!"
-                    "I don't know how she swallowed a cow!"
-                    "...She's dead, of course!"]
+    (let [song-data [{:animal "fly" :comment "I don't know why she swallowed a fly - perhaps she'll die!"}
+                     {:animal "spider" :comment "That wriggled and wiggled and tickled inside her."}
+                     {:animal "bird" :comment "How absurd to swallow a bird."}
+                     {:animal "cat" :comment "Fancy that to swallow a cat!"}
+                     {:animal "dog" :comment "What a hog, to swallow a dog!"}
+                     {:animal "cow" :comment "I don't know how she swallowed a cow!"}
+                     {:animal "horse":comment "...She's dead, of course!"}]
           expected (slurp "test/song/fixtures/song.txt")]
-      (is (= expected (sut/sing animals comments))))))
+      (is (= expected (sut/sing song-data))))))
