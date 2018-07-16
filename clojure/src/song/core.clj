@@ -26,7 +26,7 @@
 (defn animal->swallowed-a-line [animal]
   (str "There was an old lady who swallowed a " animal))
 
-(defn animals-&-comments->verse [song-data]
+(defn song-data->verse [song-data]
   (str (animal->swallowed-a-line (:animal (last song-data)))
        semi-colon-new-line
        (:comment (last song-data))
@@ -34,24 +34,24 @@
        (animals->swallowed-catched-lines (map :animal song-data))
        (:comment (first song-data))))
 
-(defn animal-&-comment->closing-verse [{:keys [animal comment]}]
+(defn song-data-item->closing-verse [{:keys [animal comment]}]
   (str (animal->swallowed-a-line animal)
        ellipsis-new-line
        comment))
 
-(defn animal-&-comment->opening-verse [{:keys [animal comment]}]
+(defn song-data-item->opening-verse [{:keys [animal comment]}]
   (str (animal->swallowed-a-line animal)
        full-stop-new-line
        comment))
 
 (defn middle-verse-accumulator [song-data acc idx]
   (str acc
-       (animals-&-comments->verse (take idx song-data))
+       (song-data->verse (take idx song-data))
        double-new-line))
 
 (defn sing [song-data]
-  (let [opening-verse (animal-&-comment->opening-verse (first song-data))
-        closing-verse (animal-&-comment->closing-verse (last song-data))
+  (let [opening-verse (song-data-item->opening-verse (first song-data))
+        closing-verse (song-data-item->closing-verse (last song-data))
         standard-verse-indexes (range 2 (count song-data))
         middle-verses (reduce (partial middle-verse-accumulator song-data) "" standard-verse-indexes)]
     (str opening-verse

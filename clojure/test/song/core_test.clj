@@ -21,19 +21,19 @@
                         "She swallowed the dog to catch the turtle;\n")]
       (is (= expected (sut/animals->swallowed-catched-lines animals))))))
 
-(deftest animal-&-comment->closing-verse
+(deftest song-data-item->closing-verse
   (testing "It returns an closing verse for the provided animal"
     (let [song-data {:animal "turtle" :comment "Something about a turtle!"}
           expected "There was an old lady who swallowed a turtle...\nSomething about a turtle!"]
-      (is (= expected (sut/animal-&-comment->closing-verse song-data))))))
+      (is (= expected (sut/song-data-item->closing-verse song-data))))))
 
-(deftest animal-&-comment->opening-verse
+(deftest song-data-item->opening-verse
   (testing "It returns an opening verse for the provided animal"
     (let [song-data {:animal "turtle" :comment "Something about a turtle!"}
           expected "There was an old lady who swallowed a turtle.\nSomething about a turtle!"]
-      (is (= expected (sut/animal-&-comment->opening-verse song-data))))))
+      (is (= expected (sut/song-data-item->opening-verse song-data))))))
 
-(deftest animals-&-comments->verse
+(deftest song-data->verse
   (testing  "It returns a verse for two animals"
     (let [song-data [{:animal "turtle" :comment "Something about a turtle!"}
                      {:animal "dog" :comment "Line about the dog..."}]
@@ -41,7 +41,7 @@
                         "Line about the dog...\n"
                         "She swallowed the dog to catch the turtle;\n"
                         "Something about a turtle!")]
-      (is (= expected (sut/animals-&-comments->verse song-data)))))
+      (is (= expected (sut/song-data->verse song-data)))))
   (testing "It returns a verse for three animals"
     (let [song-data [{:animal "turtle" :comment "Something about a turtle!"}
                      {:animal "dog" :comment  "It returns a verse for two animals"}
@@ -51,7 +51,7 @@
                         "She swallowed the penguin to catch the dog,\n"
                         "She swallowed the dog to catch the turtle;\n"
                         "Something about a turtle!")]
-      (is (= expected (sut/animals-&-comments->verse song-data))))))
+      (is (= expected (sut/song-data->verse song-data))))))
 
 (deftest animals->swallowed-catched-line
   (testing "It returns a swallowed ... to catch ... line"
