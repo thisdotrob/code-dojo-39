@@ -71,7 +71,14 @@
       (is (= expected (sut/animal->swallowed-a-line animal))))))
 
 (deftest sing
-  (testing "It returns the song as a string"
+  (testing "It returns the song as a string for 3 animals"
+    (let [animals ["fly" "spider" "bird"]
+          comments ["I don't know why she swallowed a fly - perhaps she'll die!"
+                    "That wriggled and wiggled and tickled inside her."
+                    "How absurd to swallow a bird."]
+          expected (slurp "test/song/fixtures/3-animal-song.txt")]
+      (is (= expected (sut/sing animals comments)))))
+  (testing "It returns the song as a string for 7 animals"
     (let [animals ["fly" "spider" "bird" "cat" "dog" "cow" "horse"]
           comments ["I don't know why she swallowed a fly - perhaps she'll die!"
                     "That wriggled and wiggled and tickled inside her."

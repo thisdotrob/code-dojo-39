@@ -52,13 +52,12 @@
   (str (animal->swallowed-a-line animal) ellipsis-new-line comment new-line))
 
 (defn sing [animals comments]
-  (str (animal-&-comment->opening-verse (first animals) (first comments))
-       (animals-&-comments->verse (take 2 animals) (take 2 comments))
-       (animals-&-comments->verse (take 3 animals) (take 3 comments))
-       (animals-&-comments->verse (take 4 animals) (take 4 comments))
-       (animals-&-comments->verse (take 5 animals) (take 5 comments))
-       (animals-&-comments->verse (take 6 animals) (take 6 comments))
-       (animal-&-comment->closing-verse (last animals) (last comments))))
+  (let [opening-verse (animal-&-comment->opening-verse (first animals) (first comments))
+        closing-verse (animal-&-comment->closing-verse (last animals) (last comments))
+        standard-verse-indexes (range 2 (count animals))
+        middle-verse-accumulator (fn [a x] (str a (animals-&-comments->verse (take x animals) (take x comments))))
+        middle-verses (reduce middle-verse-accumulator "" standard-verse-indexes)]
+    (str opening-verse middle-verses closing-verse)))
 
 (defn -main [animals comments]
   (pprint/pprint (sing animals comments)))
