@@ -3,16 +3,6 @@
             [clojure.string :as string])
   (:gen-class))
 
-(def animals ["fly" "spider" "bird" "cat" "dog" "cow" "horse"])
-
-(def comments ["I don't know why she swallowed a fly - perhaps she'll die!"
-               "That wriggled and wiggled and tickled inside her."
-               "How absurd to swallow a bird."
-               "Fancy that to swallow a cat!"
-               "What a hog, to swallow a dog!"
-               "I don't know how she swallowed a cow!"
-               "...She's dead, of course!"])
-
 (defn animals->swallowed-catched-line [[animal-1 animal-2]]
   (str "She swallowed the " animal-1 " to catch the " animal-2))
 
@@ -61,16 +51,14 @@
 (defn animal-&-comment->closing-verse [animal comment]
   (str (animal->swallowed-a-line animal) ellipsis-new-line comment new-line))
 
-(def default-song (str (animal-&-comment->opening-verse (first animals) (first comments))
-                       (animals-&-comments->verse (take 2 animals) (take 2 comments))
-                       (animals-&-comments->verse (take 3 animals) (take 3 comments))
-                       (animals-&-comments->verse (take 4 animals) (take 4 comments))
-                       (animals-&-comments->verse (take 5 animals) (take 5 comments))
-                       (animals-&-comments->verse (take 6 animals) (take 6 comments))
-                       (animal-&-comment->closing-verse (last animals) (last comments))))
+(defn sing [animals comments]
+  (str (animal-&-comment->opening-verse (first animals) (first comments))
+       (animals-&-comments->verse (take 2 animals) (take 2 comments))
+       (animals-&-comments->verse (take 3 animals) (take 3 comments))
+       (animals-&-comments->verse (take 4 animals) (take 4 comments))
+       (animals-&-comments->verse (take 5 animals) (take 5 comments))
+       (animals-&-comments->verse (take 6 animals) (take 6 comments))
+       (animal-&-comment->closing-verse (last animals) (last comments))))
 
-(defn sing [& args]
-  default-song)
-
-(defn -main [& args]
-  (pprint/pprint default-song))
+(defn -main [animals comments]
+  (pprint/pprint (sing animals comments)))
