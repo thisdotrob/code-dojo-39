@@ -43,22 +43,16 @@
        comment))
 
 (defn middle-verse-accumulator [song-data acc idx]
-  (str acc
-       (song-data->verse (take idx song-data))
-       line-separator
-       line-separator))
+  (into acc [(song-data->verse (take idx song-data))]))
 
 (defn sing [song-data]
   (let [opening-verse (song-data-item->opening-verse (first song-data))
         closing-verse (song-data-item->closing-verse (last song-data))
         standard-verse-indexes (range 2 (count song-data))
-        middle-verses (reduce (partial middle-verse-accumulator song-data) "" standard-verse-indexes)]
-    (str opening-verse
-         line-separator
-         line-separator
-         middle-verses
-         closing-verse
-         line-separator)))
+        middle-verses (reduce (partial middle-verse-accumulator song-data) [] standard-verse-indexes)
+        verses (into (into [opening-verse] middle-verses) [closing-verse])
+        verse-separator (str line-separator line-separator)]
+    (str (string/join verse-separator verses) line-separator)))
 
 (defn -main [song-data]
   (pprint/pprint (sing song-data)))
