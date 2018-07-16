@@ -32,25 +32,33 @@
        (:comment (last song-data))
        new-line
        (animals->swallowed-catched-lines (map :animal song-data))
-       (:comment (first song-data))
-       double-new-line))
+       (:comment (first song-data))))
 
 (defn animal-&-comment->closing-verse [{:keys [animal comment]}]
-  (str (animal->swallowed-a-line animal) ellipsis-new-line comment new-line))
+  (str (animal->swallowed-a-line animal)
+       ellipsis-new-line
+       comment))
 
 (defn animal-&-comment->opening-verse [{:keys [animal comment]}]
   (str (animal->swallowed-a-line animal)
        full-stop-new-line
-       comment
+       comment))
+
+(defn middle-verse-accumulator [song-data acc idx]
+  (str acc
+       (animals-&-comments->verse (take idx song-data))
        double-new-line))
 
 (defn sing [song-data]
   (let [opening-verse (animal-&-comment->opening-verse (first song-data))
         closing-verse (animal-&-comment->closing-verse (last song-data))
         standard-verse-indexes (range 2 (count song-data))
-        middle-verse-accumulator (fn [a x] (str a (animals-&-comments->verse (take x song-data))))
-        middle-verses (reduce middle-verse-accumulator "" standard-verse-indexes)]
-    (str opening-verse middle-verses closing-verse)))
+        middle-verses (reduce (partial middle-verse-accumulator song-data) "" standard-verse-indexes)]
+    (str opening-verse
+         double-new-line
+         middle-verses
+         closing-verse
+         new-line)))
 
 (defn -main [song-data]
   (pprint/pprint (sing song-data)))
