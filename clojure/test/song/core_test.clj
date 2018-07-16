@@ -25,12 +25,14 @@
                         "She swallowed the dog to catch the turtle;\n")]
       (is (= expected (sut/animals->swallowed-catched-lines animals))))))
 
-(deftest animals-&-comments->verse
-  (testing "It returns a verse for one animal"
-    (let [animals ["turtle"]
-          comments ["Something about a turtle!"]
+(deftest animal-&-comment->opening-verse
+  (testing "It returns an opening verse for the provided animal"
+    (let [animal "turtle"
+          comment "Something about a turtle!"
           expected "There was an old lady who swallowed a turtle.\nSomething about a turtle!\n\n"]
-      (is (= expected (sut/animals-&-comments->verse animals comments)))))
+      (is (= expected (sut/animal-&-comment->opening-verse animal comment))))))
+
+(deftest animals-&-comments->verse
   (testing "It returns a verse for two animals"
     (let [animals ["turtle" "dog"]
           comments ["Something about a turtle!" "Line about the dog..."]

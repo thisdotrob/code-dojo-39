@@ -43,21 +43,22 @@
           lines (map (fn [x] (animals->swallowed-catched-line x)) pairs)]
       (str (string/join ",\n" lines) ";\n"))))
 
-(defn animals-&-comments->verse [animals comments]
-  (if (= 1 (count animals))
-    (str (animal->swallowed-a-line (first animals))
-         full-stop-new-line
-         (first comments)
-         double-new-line)
-    (str (animal->swallowed-a-line (last animals))
-         semi-colon-new-line
-         (last comments)
-         new-line
-         (animals->swallowed-catched-lines animals)
-         (first comments)
-         double-new-line)))
+(defn animal-&-comment->opening-verse [animal comment]
+  (str (animal->swallowed-a-line animal)
+       full-stop-new-line
+       comment
+       double-new-line))
 
-(def default-song (str (animals-&-comments->verse (take 1 animals) (take 1 comments))
+(defn animals-&-comments->verse [animals comments]
+  (str (animal->swallowed-a-line (last animals))
+       semi-colon-new-line
+       (last comments)
+       new-line
+       (animals->swallowed-catched-lines animals)
+       (first comments)
+       double-new-line))
+
+(def default-song (str (animal-&-comment->opening-verse (first animals) (first comments))
                        (animals-&-comments->verse (take 2 animals) (take 2 comments))
                        (animals-&-comments->verse (take 3 animals) (take 3 comments))
                        (animals-&-comments->verse (take 4 animals) (take 4 comments))
