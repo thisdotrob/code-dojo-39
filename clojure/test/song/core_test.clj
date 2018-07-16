@@ -9,10 +9,6 @@
       (is (= expected (sut/make-pairs animals))))))
 
 (deftest animals->swallowed-catched-lines
-  (testing "It returns an empty string for a single animal"
-    (let [animals ["turtle"]
-          expected ""]
-      (is (= expected (sut/animals->swallowed-catched-lines animals)))))
   (testing "It returns correct lines for two animals"
     (let [animals ["turtle" "dog"]
           expected (str "She swallowed the dog to catch the turtle;\n")]

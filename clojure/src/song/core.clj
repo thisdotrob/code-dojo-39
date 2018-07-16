@@ -27,11 +27,9 @@
     (map map-fn indexes)))
 
 (defn animals->swallowed-catched-lines [animals]
-  (if (= (count animals) 1)
-    ""
-    (let [pairs (make-pairs (reverse animals))
-          lines (map (fn [x] (animals->swallowed-catched-line x)) pairs)]
-      (str (string/join ",\n" lines) ";\n"))))
+  (let [pairs (make-pairs (reverse animals))
+        lines (map (fn [x] (animals->swallowed-catched-line x)) pairs)]
+    (str (string/join ",\n" lines) ";\n")))
 
 (defn animal-&-comment->opening-verse [animal comment]
   (str (animal->swallowed-a-line animal)
